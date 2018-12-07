@@ -22,7 +22,8 @@ GameObject:
   - component: {fileID: 33561495900707490}
   - component: {fileID: 23645684599494588}
   - component: {fileID: 65530156480109546}
-  m_Layer: 0
+  - component: {fileID: 114510888736479718}
+  m_Layer: 10
   m_Name: Food
   m_TagString: Food
   m_Icon: {fileID: 0}
@@ -35,9 +36,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1634973785763432}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7, y: 1, z: 5.45}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 21.7, y: 1, z: 4.1}
+  m_LocalScale: {x: 2.5, y: 1, z: 2.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -57,7 +58,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 5ab3f25cee2bc6c44b3094998e160713, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -94,5 +95,19 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 1, z: 1.5}
+  m_Size: {x: 1.25, y: 1, z: 1.25}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114510888736479718
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1634973785763432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8a8c7f78c244c548a08d93e66b0d468, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foodCount: 10
+  foodMin: 10
+  foodMax: 75

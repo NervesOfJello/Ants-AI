@@ -5,29 +5,32 @@ using UnityEngine.AI;
 
 public class AddObstacleOnClick : MonoBehaviour {
 
-    //TODO: Handle Movement Differently than Point-And-Click
-    [SerializeField]
     private Camera cam; //reference the camera component
 
     [SerializeField]
-    private NavMeshObstacle obstaclePrefab;
+    private NavMeshObstacle rockPrefab;
+    [SerializeField]
+    private FoodStorage foodPrefab;
 
     void Start()
     {
-
+        cam = GetComponent<Camera>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(1))
+        //left click
+        if (Input.GetMouseButtonDown(0))
         {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit))
+            //Physics.Raycast(ray, out hit, 500);
+
+            if (Physics.Raycast(ray, out hit, 500))
             {
-                Instantiate(obstaclePrefab, hit.transform);
+                Instantiate(rockPrefab, hit.point, Quaternion.identity);
             }
         }
     }

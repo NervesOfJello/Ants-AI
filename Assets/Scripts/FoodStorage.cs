@@ -6,7 +6,11 @@ public class FoodStorage : MonoBehaviour {
 
     [SerializeField]
     private float foodCount; //how much food the object holds
-    private float sizeChangeRatio = 0.5f; //how much the scale changes by
+    private float sizeChangeRatio = 0.25f; //how much the scale changes by
+    [SerializeField]
+    private float foodMin;
+    [SerializeField]
+    private float foodMax;
 
     //get set for foodCount
     public float FoodCount
@@ -24,14 +28,18 @@ public class FoodStorage : MonoBehaviour {
         }
 
     }
-    
+    private void Start()
+    {
+        setFoodStart();
+    }
+
     private void updateFoodSize()
     {
         this.transform.localScale = new Vector3(transform.localScale.x, foodCount * sizeChangeRatio, transform.localScale.z);
     }
 
-    private void Start()
+    private void setFoodStart()
     {
-        updateFoodSize();
+        FoodCount = Random.Range(foodMin, foodMax);
     }
 }

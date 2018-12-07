@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
-public class AntController : MonoBehaviour {
+public class PredatorController : MonoBehaviour {
 
     #region Variables
 
@@ -32,22 +31,22 @@ public class AntController : MonoBehaviour {
     private bool isOnPheremoneCooldown; //determines whether the ant has a searching destination
 
     //component variables
-    private NavMeshAgent agent; //referencing the nav mesh agent component
+    private UnityEngine.AI.NavMeshAgent agent; //referencing the nav mesh agent component
     [SerializeField]
     private MeshRenderer foodMeshRenderer; //references the mesh renderer of the food
     private TrailRenderer tailComponent; //references the tail renderer component
-#endregion
+    #endregion
 
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>(); //initialize nave mesh agent component
+        agent = GetComponent<UnityEngine.AI.NavMeshAgent>(); //initialize nave mesh agent component
         GetNewSearchingDestination();
         //set an initial search destination
     }
 
     // Update is called once per frame
-    void Update () 
-	{
+    void Update()
+    {
         StartCoroutine(LastPositionCoroutine()); //starts the setting of the last position
         CheckState(); //updates the behavior state of the
     }
@@ -59,7 +58,7 @@ public class AntController : MonoBehaviour {
             //Debug.Log("Running Homecoming Behavior");
             //NAVIGATION TO ANTHILL CODE
             agent.SetDestination(homeTransform.position);
-            StartCoroutine(PheremoneCooldownCoroutine());        
+            StartCoroutine(PheremoneCooldownCoroutine());
         }
         else
         {
@@ -149,5 +148,4 @@ public class AntController : MonoBehaviour {
         StartCoroutine(PheremoneDropCoroutine());
     }
     #endregion
-
 }
