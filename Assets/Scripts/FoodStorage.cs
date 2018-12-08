@@ -20,7 +20,7 @@ public class FoodStorage : MonoBehaviour {
         set
         {
             foodCount = value;
-            if (foodCount <= 0)
+            if (foodCount <= 1)
             {
                 Destroy(this.gameObject);
             }

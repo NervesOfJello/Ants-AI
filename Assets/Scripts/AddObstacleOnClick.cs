@@ -28,7 +28,18 @@ public class AddObstacleOnClick : MonoBehaviour {
 
             //Physics.Raycast(ray, out hit, 500);
 
-            if (Physics.Raycast(ray, out hit, 500))
+            if (Physics.Raycast(ray, out hit, 500) && hit.collider.CompareTag("Ground"))
+            {
+                Instantiate(foodPrefab, hit.point, Quaternion.identity);
+            }
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, 500) && hit.collider.CompareTag("Ground"))
             {
                 Instantiate(rockPrefab, hit.point, Quaternion.identity);
             }
