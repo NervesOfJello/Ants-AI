@@ -8,6 +8,8 @@ TagManager:
   - Home
   - Ant
   - Ground
+  - Beetle
+  - Aphid
   layers:
   - Default
   - TransparentFX
@@ -20,7 +22,7 @@ TagManager:
   - PostProcessing
   - Ants
   - Food
-  - 
+  - Beetles
   - 
   - 
   - 

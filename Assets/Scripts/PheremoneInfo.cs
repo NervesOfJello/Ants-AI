@@ -5,5 +5,5 @@ using UnityEngine;
 public class PheremoneInfo : MonoBehaviour
 {
     [HideInInspector]
-    public Vector3 guidePosition;   
+    public Vector3 guidePosition;
 }

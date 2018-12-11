@@ -314,7 +314,7 @@ MonoBehaviour:
   destinationDetectionRange: 0.5
   foodConsumption: 1
   homeTransform: {fileID: 0}
-  PheremonePrefab: {fileID: 4326943585773268, guid: 38ac5861ccec6624ca8b72aa88203d97,
+  PheremonePrefab: {fileID: 1104287661370630, guid: 38ac5861ccec6624ca8b72aa88203d97,
     type: 2}
   foodMeshRenderer: {fileID: 23736699141738338}
 --- !u!195 &195685187070471316

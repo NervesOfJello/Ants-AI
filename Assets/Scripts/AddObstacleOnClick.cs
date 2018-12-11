@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class AddObstacleOnClick : MonoBehaviour {
 
@@ -43,6 +44,11 @@ public class AddObstacleOnClick : MonoBehaviour {
             {
                 Instantiate(rockPrefab, hit.point, Quaternion.identity);
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SceneManager.LoadScene(0);
         }
     }
 }

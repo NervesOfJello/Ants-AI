@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class AntController : MonoBehaviour {
+public class Predator : MonoBehaviour {
 
     #region Variables
 
@@ -33,7 +33,7 @@ public class AntController : MonoBehaviour {
     [SerializeField]
     private MeshRenderer foodMeshRenderer; //references the mesh renderer of the food
     private TrailRenderer tailComponent; //references the tail renderer component
-#endregion
+    #endregion
 
     void Start()
     {
@@ -43,8 +43,8 @@ public class AntController : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () 
-	{
+    void Update()
+    {
         StartCoroutine(LastPositionCoroutine()); //starts the setting of the last position
         CheckState(); //updates the behavior state of the
     }
@@ -56,7 +56,7 @@ public class AntController : MonoBehaviour {
             //Debug.Log("Running Homecoming Behavior");
             //NAVIGATION TO ANTHILL CODE
             agent.SetDestination(homeTransform.position);
-            StartCoroutine(PheremoneCooldownCoroutine());        
+            StartCoroutine(PheremoneCooldownCoroutine());
         }
         else
         {
@@ -87,20 +87,13 @@ public class AntController : MonoBehaviour {
     //Collision Functions
     private void OnTriggerEnter(Collider other)
     {
-        //when it finds food
-        if (!hasFood && other.CompareTag("Food") && other.GetComponent<FoodStorage>() != null)
-        {
-            other.GetComponent<FoodStorage>().FoodCount -= foodConsumption;
-            hasFood = true;
-            foodMeshRenderer.enabled = true;
-        }
 
         //when it gets home with food
-        if (hasFood && other.CompareTag("Home") && other.GetComponent<Anthill>() != null)
+        if (hasFood && other.CompareTag("Home") && other.GetComponent<BeetleDen>() != null)
         {
             SpawnPheremone();
             hasFood = false;
-            other.GetComponent<Anthill>().AddFood();
+            other.GetComponent<BeetleDen>().AddFood();
             foodMeshRenderer.enabled = false;
         }
 
@@ -111,10 +104,23 @@ public class AntController : MonoBehaviour {
         }
     }
 
+    //when it collides with an ant
+    private void OnCollisionEnter(Collision collision)
+    {
+        //when it finds food
+        if (!hasFood && collision.gameObject.CompareTag("Ant") && collision.gameObject.GetComponent<AntController>() != null)
+        {
+            Destroy(collision.gameObject);
+            hasFood = true;
+            foodMeshRenderer.enabled = true;
+        }
+        
+    }
+
     void SpawnPheremone() //instantiates pheremone objects
     {
         //Make a pheremone object and also set its guide position to this ant's past position
-        GameObject Pheremone =  (GameObject)Instantiate(PheremonePrefab, this.transform.position, Quaternion.identity);
+        GameObject Pheremone = (GameObject)Instantiate(PheremonePrefab, this.transform.position, Quaternion.identity);
         Pheremone.GetComponent<PheremoneInfo>().guidePosition = pastPosition;
         Pheremone.GetComponent<Transform>().tag = this.tag;
     }
@@ -148,5 +154,4 @@ public class AntController : MonoBehaviour {
         StartCoroutine(PheremoneDropCoroutine());
     }
     #endregion
-
 }
